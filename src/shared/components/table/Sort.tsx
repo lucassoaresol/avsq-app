@@ -1,0 +1,44 @@
+import { TableHead, TableRow, TableSortLabel } from "@mui/material";
+import { usePaginationContext } from "../../contexts";
+import { iLinkComp, iheadCell } from "../../interfaces";
+import { TableCellLink } from "./CellLink";
+
+interface iSortProps {
+  headCells: iheadCell[];
+  linkComp: iLinkComp;
+  link?: "div";
+}
+
+export const TableSort = ({ headCells, linkComp, link }: iSortProps) => {
+  const { by, setBy, order, setOrder } = usePaginationContext();
+
+  const createSortHandler = (property?: string) => () => {
+    const isAsc = order === property && by === "asc";
+    setOrder(property ? property : "");
+    setBy(isAsc ? "desc" : "asc");
+  };
+
+  return (
+    <TableHead {...linkComp}>
+      <TableRow {...linkComp}>
+        {headCells.map((el, index) => (
+          <TableCellLink
+            key={index}
+            sortDirection={order === el.order ? by : false}
+            numeric={el.numeric}
+            link={link}
+          >
+            <TableSortLabel
+              disabled={!el.order}
+              active={order === el.order}
+              direction={order === el.order ? by : undefined}
+              onClick={createSortHandler(el.order)}
+            >
+              {el.label}
+            </TableSortLabel>
+          </TableCellLink>
+        ))}
+      </TableRow>
+    </TableHead>
+  );
+};
