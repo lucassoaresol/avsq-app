@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { imageSchema } from "./file.schema";
 
 export const RoleSchema = z.enum(["COMMON", "EDITOR", "ADMIN"]);
 
@@ -23,10 +24,7 @@ export const activeUserSchema = z.object({
 
 export const userFirstSchema = z
   .object({
-    avatar: z
-      .instanceof(FileList)
-      .refine((files) => files === null, "Foto de perfil obrigatório")
-      .transform((list) => list.item(0)),
+    avatar: imageSchema,
     name: z
       .string({ required_error: "Nome completo obrigatório" })
       .nonempty("Nome completo obrigatório"),

@@ -49,17 +49,18 @@ export const Header = ({ isHome }: iHeaderProps) => {
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             {!mdDown && (
-              <Box ml={2} mr={2} height={80}>
-                <img style={{ height: "100%" }} src="/header.webp" />
+              <Box ml={2} mr={4} display="flex" alignItems="center">
+                <img src="/logo.png" />
               </Box>
             )}
             <Box
               width={mdDown ? "100vw" : "100%"}
               display="flex"
+              alignItems="center"
               justifyContent="space-between"
             >
               <Typography variant={mdDown ? "h6" : "h5"}>
-                Portal de Frequência
+                Painel de Postagens
               </Typography>
               {!mdDown && (
                 <Box display="flex" gap={1}>

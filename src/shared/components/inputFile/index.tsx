@@ -6,9 +6,14 @@ export const InputFile = () => {
 
   const { errors } = formState;
 
+  const data_errors = errors.avatar ? true : false;
+
   return (
     <div>
-      <form className="flex flex-col gap-2 border invalid:border-red-600 invalid:first:text-red-600 invalid:hover:border-red-600 border-neutral-300 hover:border-neutral-700 transition-colors rounded-[4px] px-[14px] pt-3 pb-[16.5px] text-[#000000de] hover:cursor-pointer">
+      <div
+        data-errors={data_errors}
+        className="flex flex-col gap-2 border border-neutral-300 hover:border-neutral-700 transition-colors rounded-[4px] px-[14px] pt-3 pb-[16.5px] text-neutral-500 hover:cursor-pointer data-[errors=true]:border-red-600 data-[errors=true]:first:text-red-600 data-[errors=true]:hover:border-red-600"
+      >
         <label htmlFor="avatar" className="text-sm hover:cursor-pointer">
           Foto de Perfil *
         </label>
@@ -20,7 +25,7 @@ export const InputFile = () => {
           className="text-sm cursor-pointer file:bg-primary file:hover:bg-red-900 file:transition-colors file:uppercase file:text-xs file:p-[6px]  file:text-white file:shadow file:rounded file:border-none file:cursor-pointer"
           {...register("avatar")}
         />
-      </form>
+      </div>
       {errors.avatar && (
         <span className="text-red-600 text-xs ml-[14px]">
           {errors.avatar.message}

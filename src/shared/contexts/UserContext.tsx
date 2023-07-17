@@ -16,7 +16,7 @@ import {
 } from "../interfaces";
 import { useNavigate } from "react-router-dom";
 import { FieldValues } from "react-hook-form";
-import { apiAuth, apiUser } from "../services";
+import { apiAuth, apiImage, apiUser } from "../services";
 import { useAppThemeContext } from "./ThemeContext";
 import { useAuthContext } from "./AuthContext";
 
@@ -71,6 +71,9 @@ export const UserProvider = ({ children }: iChildren) => {
     async (id: string, data: iUserFirstRequest) => {
       try {
         setLoading(true);
+        const dataImage = new FormData();
+        if (data.avatar) dataImage.append("image", data.avatar);
+        await apiImage.createUser(dataImage);
         const user = await apiUser.update(id, data);
         handleSucess("Dados cadastrados com sucesso");
         setUserData(user);
