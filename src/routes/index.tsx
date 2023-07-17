@@ -8,6 +8,7 @@ import {
   UserPage,
 } from "../pages";
 import { ProtectedAdmin, ProtectedAuth } from "../shared/components";
+import { RetrievePostPage } from "../pages/post";
 
 const AppRoutes = () => {
   const location = useLocation();
@@ -22,6 +23,7 @@ const AppRoutes = () => {
           <Route path="/home/school" element={<HomePage isHome />} />
         </Route>
         <Route path="/" element={<HomePage />} />
+        <Route path="/:id" element={<RetrievePostPage />} />
         <Route path="/profile/edit" element={<EditProfilePage />} />
         <Route path="/profile/edit/password" element={<EditPasswordPage />} />
       </Route>

@@ -19,7 +19,7 @@ interface iHeaderProps {
 }
 
 export const Header = ({ isHome }: iHeaderProps) => {
-  const { mdDown } = useAppThemeContext();
+  const { mdDown, theme } = useAppThemeContext();
   const { logout, userData } = useAuthContext();
   const [open, setOpen] = useState(true);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -48,11 +48,15 @@ export const Header = ({ isHome }: iHeaderProps) => {
       <AppBar position="static">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            {!mdDown && (
-              <Box ml={2} mr={4} display="flex" alignItems="center">
-                <img src="/logo.png" />
-              </Box>
-            )}
+            <Box
+              ml={2}
+              mr={4}
+              display="flex"
+              alignItems="center"
+              height={theme.spacing(8)}
+            >
+              <img className="h-[70%]" src="/logo.png" />
+            </Box>
             <Box
               width={mdDown ? "100vw" : "100%"}
               display="flex"
