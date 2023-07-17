@@ -23,6 +23,10 @@ export const activeUserSchema = z.object({
 
 export const userFirstSchema = z
   .object({
+    avatar: z
+      .instanceof(FileList)
+      .refine((files) => files === null, "Foto de perfil obrigatório")
+      .transform((list) => list.item(0)),
     name: z
       .string({ required_error: "Nome completo obrigatório" })
       .nonempty("Nome completo obrigatório"),

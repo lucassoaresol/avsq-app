@@ -49,6 +49,10 @@ export interface iTable extends iChildren {
   link?: "div";
 }
 
+export interface iIconProps {
+  size?: number;
+}
+
 export type iLinkComp = { component: "div" } | object;
 
 export interface iPageProps {

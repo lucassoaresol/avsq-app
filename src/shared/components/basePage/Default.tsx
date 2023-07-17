@@ -1,11 +1,14 @@
 import { Box, Container, Paper, useMediaQuery, useTheme } from "@mui/material";
 import { iChildren } from "../../interfaces";
 
-interface iBasePageProps extends iChildren {
+interface iBasePageDefaultProps extends iChildren {
   padding?: number;
 }
 
-export const BasePage = ({ children, padding = 8 }: iBasePageProps) => {
+export const BasePageDefault = ({
+  children,
+  padding = 8,
+}: iBasePageDefaultProps) => {
   const matches = useMediaQuery("(max-width:395px)");
   const theme = useTheme();
 
