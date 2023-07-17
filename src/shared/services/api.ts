@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const token = localStorage.getItem("@EMTechs:token");
+const token = localStorage.getItem("@AVSQ:token");
 const serverUrl = "https://avsq-api.vercel.app/";
 const localServer = "http://localhost:4002/";
 

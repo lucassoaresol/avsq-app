@@ -1,7 +1,7 @@
 import { Box, Container, Grid } from "@mui/material";
 import { useAppThemeContext, useAuthContext } from "../../shared/contexts";
 import { Header } from "../../shared/components";
-import { User } from "./components";
+import { Post, User } from "./components";
 
 interface iHomePageProps {
   isHome?: boolean;
@@ -21,6 +21,7 @@ export const HomePage = ({ isHome }: iHomePageProps) => {
             direction={mdDown ? "column" : "row"}
             spacing={mdDown ? 2 : 5}
           >
+            <Post />
             <User user={userData} />
           </Grid>
         </Container>

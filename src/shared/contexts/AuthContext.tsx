@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }: iChildren) => {
   const [userData, setUserData] = useState<iUser>();
 
   useEffect(() => {
-    const accessToken = localStorage.getItem("@EMTechs:token");
+    const accessToken = localStorage.getItem("@AVSQ:token");
 
     if (accessToken) {
       setAccessToken(accessToken);
@@ -64,7 +64,7 @@ export const AuthProvider = ({ children }: iChildren) => {
           setUserData(res);
         })
         .catch(() => {
-          localStorage.removeItem("@EMTechs:token");
+          localStorage.removeItem("@AVSQ:token");
           setAccessToken(undefined);
         })
         .finally(() => setLoading(false));
@@ -75,7 +75,7 @@ export const AuthProvider = ({ children }: iChildren) => {
     try {
       setLoading(true);
       const { token } = await apiAuth.login(data);
-      localStorage.setItem("@EMTechs:token", token);
+      localStorage.setItem("@AVSQ:token", token);
       setAccessToken(token);
       handleSucess("Login realizado com sucesso");
     } catch (e) {
@@ -137,7 +137,7 @@ export const AuthProvider = ({ children }: iChildren) => {
   );
 
   const handleLogout = useCallback(() => {
-    localStorage.removeItem("@EMTechs:token");
+    localStorage.removeItem("@AVSQ:token");
     setAccessToken(undefined);
     setUserData(undefined);
     navigate("/");

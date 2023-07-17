@@ -7,9 +7,9 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, IconButton } from "@mui/material";
 import { Info } from "@mui/icons-material";
-import { iChildren } from "../interfaces";
+import { iChildren, iUserFirstRequest } from "../interfaces";
 import { useAuthContext, useUserContext } from "../contexts";
-import { BasePage, BoxResp, Glossary } from "../components";
+import { BasePage, BoxResp, Glossary, InputFile } from "../components";
 import { userFirstSchema } from "../schemas";
 
 export const ViewFirst = ({ children }: iChildren) => {
@@ -30,15 +30,14 @@ export const ViewFirst = ({ children }: iChildren) => {
         <>
           <BasePage padding={5}>
             <FormContainer
-              onSuccess={(data) => {
-                if (userData) first(userData.id, data);
-              }}
+              onSuccess={(data: iUserFirstRequest) => first(userData.id, data)}
               resolver={zodResolver(userFirstSchema)}
             >
               <BoxResp>
                 <IconButton onClick={handleOpen} color="secondary">
                   <Info />
                 </IconButton>
+                <InputFile />
                 <TextFieldElement
                   name="name"
                   label="Nome completo"

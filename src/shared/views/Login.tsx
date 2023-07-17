@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuthContext } from "../contexts";
 import { iChildren } from "../interfaces";
-import { BasePageLogin, BoxResp, Glossary, ValidateLogin } from "../components";
+import { BasePage, BoxResp, Glossary, ValidateLogin } from "../components";
 import {
   FormContainer,
   PasswordElement,
@@ -9,7 +9,7 @@ import {
 } from "react-hook-form-mui";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema, recoverySchema } from "../schemas";
-import { Box, Button, IconButton, Paper } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
 import { Info, LockReset, Login } from "@mui/icons-material";
 
 export const ViewLogin = ({ children }: iChildren) => {
@@ -24,37 +24,27 @@ export const ViewLogin = ({ children }: iChildren) => {
 
   return (
     <>
-      <BasePageLogin>
+      <BasePage padding={6}>
         {isLogin ? (
           <FormContainer onSuccess={login} resolver={zodResolver(loginSchema)}>
             <BoxResp isLogin>
               <IconButton onClick={handleOpen} color="secondary">
                 <Info />
               </IconButton>
-              <Box
-                width="100%"
-                display="flex"
-                flexDirection="column"
-                gap={1}
-                component={Paper}
-                p={1.5}
-              >
-                <TextFieldElement
-                  name="login"
-                  label="Usuário"
-                  required
-                  fullWidth
-                />
-                <ValidateLogin />
-                <PasswordElement
-                  name="password"
-                  label="Senha"
-                  required
-                  fullWidth
-                />
-              </Box>
+              <TextFieldElement
+                name="login"
+                label="Usuário"
+                required
+                fullWidth
+              />
+              <ValidateLogin />
+              <PasswordElement
+                name="password"
+                label="Senha"
+                required
+                fullWidth
+              />
               <Button
-                color="secondary"
                 variant="contained"
                 startIcon={<Login />}
                 type="submit"
@@ -64,7 +54,7 @@ export const ViewLogin = ({ children }: iChildren) => {
               </Button>
               <Button
                 variant="contained"
-                color="inherit"
+                color="secondary"
                 startIcon={<LockReset />}
                 onClick={() => setIsLogin(false)}
                 fullWidth
@@ -109,7 +99,7 @@ export const ViewLogin = ({ children }: iChildren) => {
             </BoxResp>
           </FormContainer>
         )}
-      </BasePageLogin>
+      </BasePage>
       <Glossary open={open} onClose={handleOpen}>
         {isLogin ? (
           <>
